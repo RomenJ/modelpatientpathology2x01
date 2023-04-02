@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Diagnosis index{% endblock %}
+
+{% block body %}
+    <h1>Diagnosis index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+             
+                <th>Diagnosis Date</th>
+                <th>Patient</th>
+                <th>Pathologies detected</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for diagnosi in diagnoses %}
+            <tr>
+                
+                <td>{{ diagnosi.datedia ? diagnosi.datedia|date('Y-m-d') : '' }}</td>
+                <td>{{ diagnosi.paciente }}</td>
+               <td>
+  <ul>
+            {% for pato in  diagnosi.pathologies %}
+            
+            <li>  {{ pato.name }} </li>
+              {% if not loop.last %}, {% endif %}
+            {% endfor %}
+            </ul>
+</td>
+                <td>
+                    <a class="btnb2"  href="{{ path('app_diagnosis_show', {'id': diagnosi.id}) }}">show</a>
+                    <a  class="btnb3" href="{{ path('app_diagnosis_edit', {'id': diagnosi.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a  class="btnb"  href="{{ path('app_diagnosis_new') }}">Create new</a>
+{% endblock %}

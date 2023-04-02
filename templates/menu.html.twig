@@ -1,0 +1,23 @@
+  {% if app.user %}
+   <div class="MenuIni">
+
+      <ul>
+         <a  class="btn"  href="{{ path('app_paciente_index') }}"> Patients Admin</a></code>
+         <a  class="btn"  href="{{ path('app_pathology_index') }}"> Pathologies Admin</a>
+         <a  class="btn"  href="{{ path('app_diagnosis_index') }}"> Diagnosis Area</a>
+
+    </ul>
+   </div>
+   
+
+ {% else %}
+    <div class="MenuIni">
+      <ul>
+      <p class="Negro"> Usuario no registrado</p>
+
+          <a  class="btn"  href="{{ path('app_paciente_index') }}"> Patients Admin</a></code>
+         <a  class="btn"  href="{{ path('app_pathology_index') }}"> Pathologies Admin</a>
+         <a  class="btn"  href="{{ path('app_diagnosis_index') }}"> Diagnosis Area</a>
+    </ul>
+ </div>
+     {% endif %}

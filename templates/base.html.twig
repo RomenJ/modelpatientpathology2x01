@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+              <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> 
+         <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+       
+   {#  
+   Generar archivos de pdf en symfony : 
+
+   https://latteandcode.medium.com/generando-pdfs-con-symfony-d34a516a45fe
+Y 
+   https://www.binaryboxtuts.com/php-tutorials/generating-pdf-from-html-in-symfony-6/
+
+   #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+
+           <style>
+/* Backgroun a triángulos 
+
+Fuente:https://www.svgbackgrounds.com/set/free-svg-backgrounds-and-patterns/
+
+*/
+ 
+    body{
+    background-color: #D4E3FF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1200 800'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='600' y1='25' x2='600' y2='777'%3E%3Cstop offset='0' stop-color='%23D4E3FF'/%3E%3Cstop offset='1' stop-color='%23C3D8FF'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='650' y1='25' x2='650' y2='777'%3E%3Cstop offset='0' stop-color='%23d2e2ff'/%3E%3Cstop offset='1' stop-color='%23bbd2fd'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='700' y1='25' x2='700' y2='777'%3E%3Cstop offset='0' stop-color='%23d1e1ff'/%3E%3Cstop offset='1' stop-color='%23b4ccfa'/%3E%3C/linearGradient%3E%3ClinearGradient id='d' gradientUnits='userSpaceOnUse' x1='750' y1='25' x2='750' y2='777'%3E%3Cstop offset='0' stop-color='%23cfe0ff'/%3E%3Cstop offset='1' stop-color='%23adc6f6'/%3E%3C/linearGradient%3E%3ClinearGradient id='e' gradientUnits='userSpaceOnUse' x1='800' y1='25' x2='800' y2='777'%3E%3Cstop offset='0' stop-color='%23cedfff'/%3E%3Cstop offset='1' stop-color='%23a7c1f2'/%3E%3C/linearGradient%3E%3ClinearGradient id='f' gradientUnits='userSpaceOnUse' x1='850' y1='25' x2='850' y2='777'%3E%3Cstop offset='0' stop-color='%23ccdeff'/%3E%3Cstop offset='1' stop-color='%23a2bced'/%3E%3C/linearGradient%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x1='900' y1='25' x2='900' y2='777'%3E%3Cstop offset='0' stop-color='%23cbddff'/%3E%3Cstop offset='1' stop-color='%239eb7e7'/%3E%3C/linearGradient%3E%3ClinearGradient id='h' gradientUnits='userSpaceOnUse' x1='950' y1='25' x2='950' y2='777'%3E%3Cstop offset='0' stop-color='%23c9dcff'/%3E%3Cstop offset='1' stop-color='%239ab2e1'/%3E%3C/linearGradient%3E%3ClinearGradient id='i' gradientUnits='userSpaceOnUse' x1='1000' y1='25' x2='1000' y2='777'%3E%3Cstop offset='0' stop-color='%23c8dbff'/%3E%3Cstop offset='1' stop-color='%2397adda'/%3E%3C/linearGradient%3E%3ClinearGradient id='j' gradientUnits='userSpaceOnUse' x1='1050' y1='25' x2='1050' y2='777'%3E%3Cstop offset='0' stop-color='%23c6daff'/%3E%3Cstop offset='1' stop-color='%2394a9d2'/%3E%3C/linearGradient%3E%3ClinearGradient id='k' gradientUnits='userSpaceOnUse' x1='1100' y1='25' x2='1100' y2='777'%3E%3Cstop offset='0' stop-color='%23c5d9ff'/%3E%3Cstop offset='1' stop-color='%2392a5ca'/%3E%3C/linearGradient%3E%3ClinearGradient id='l' gradientUnits='userSpaceOnUse' x1='1150' y1='25' x2='1150' y2='777'%3E%3Cstop offset='0' stop-color='%23C3D8FF'/%3E%3Cstop offset='1' stop-color='%2391A1C1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg %3E%3Crect fill='url(%23a)' width='1200' height='800'/%3E%3Crect fill='url(%23b)' x='100' width='1100' height='800'/%3E%3Crect fill='url(%23c)' x='200' width='1000' height='800'/%3E%3Crect fill='url(%23d)' x='300' width='900' height='800'/%3E%3Crect fill='url(%23e)' x='400' width='800' height='800'/%3E%3Crect fill='url(%23f)' x='500' width='700' height='800'/%3E%3Crect fill='url(%23g)' x='600' width='600' height='800'/%3E%3Crect fill='url(%23h)' x='700' width='500' height='800'/%3E%3Crect fill='url(%23i)' x='800' width='400' height='800'/%3E%3Crect fill='url(%23j)' x='900' width='300' height='800'/%3E%3Crect fill='url(%23k)' x='1000' width='200' height='800'/%3E%3Crect fill='url(%23l)' x='1100' width='100' height='800'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+    min-height:800px;
+    }
+
+    .btn{
+    margin: 20px;
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background-color: rgba(46, 12, 87, 0.5);
+    padding: 10px 30px;
+    border: 2px solid #0066cc;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition : 1065ms;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btn:hover{
+
+    transition : 1065ms;
+    padding: 10px 32px;
+    background-color: #fff;
+    color: #0066cc;
+    border: solid 2px #0066cc;
+}
+
+    .btnb{
+
+    margin: 20px;
+    width:200px;
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background-color: rgba(17, 151, 110 , 0.5);
+    padding: 10px 30px;
+    border: 2px solid #208465 ;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition : 1065ms;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btnb:hover{
+
+    transition : 1065ms;
+    padding: 10px 32px;
+    background-color: #fff;
+    color: #0066cc;
+    border: solid 2px #0066cc;
+}
+
+   .btnc{
+    margin: 20px;
+    width:200px;
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background-color: rgba(43, 185, 219 , 0.5);
+    padding: 10px 30px;
+    border: 2px solid ##166C81 ;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition : 1065ms;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+
+.btnc:hover{
+
+    transition : 1065ms;
+    padding: 10px 32px;
+    background-color: #fff;
+    color: #0066cc;
+    border: solid 2px #0066cc;
+}
+
+
+    .btnb2{
+
+    margin: 10px;
+    width:100px;
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background-color: rgba(17, 151, 110 , 0.5);
+    padding: 10px 30px;
+    border: 2px solid #208465 ;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition : 1065ms;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btnb2:hover{
+
+    transition : 1065ms;
+    padding: 10px 32px;
+    background-color: #fff;
+    color: #0066cc;
+    border: solid 2px #0066cc;
+}
+
+
+
+.btnb3{
+
+    margin: 10px;
+    width:100px;
+    font-family: Roboto, sans-serif;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background-color: rgba(107, 201, 110 , 0.5);
+    padding: 10px 30px;
+    border: 2px solid #208465 ;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition : 1065ms;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btnb3:hover{
+
+    transition : 1065ms;
+    padding: 10px 32px;
+    background-color: #fff;
+    color: #0066cc;
+    border: solid 2px #0066cc;
+}
+
+
+    h1,p,li,label,a,h6,td,th,input{
+
+    color:black;
+
+    }
+    input{
+        color:whitesmoke;
+    }
+.caja1{
+
+    padding-top:40px;
+}
+
+.caja2{
+    padding-top:25px;
+    
+}
+.Cabecera_Header{
+        font-size:3em;
+        text-align:center;
+        padding-top:40px;
+}
+  
+.blanco{
+
+    color:white;
+}
+
+.minMargin{
+
+    width:40%;
+}
+
+.MenuIni{
+
+    margin-left: 40px;
+}
+.fotoAvatar{
+
+    margin-left: 30%;
+    border-radius: 30px;
+}
+.Logouth{
+
+    margin-left: 25%;
+    margin-top: 20px;
+
+
+
+}
+   </style>
+   
+    </head>
+    <body>
+          {% include 'header.html.twig' %}
+  
+  <div class="row">
+
+        <div class="dvi1 col-sm-3 caja1">   {% include 'menu.html.twig' %}
+        </div>
+        <div class="dvi2 col-sm-8 caja2">
+        
+        
+         {% block body %}{% endblock %}
+        </div>
+
+    </div>
+
+
+
+  
+    </body>
+</html>

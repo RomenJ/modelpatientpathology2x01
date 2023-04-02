@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pathology index{% endblock %}
+
+{% block body %}
+    <h1>Pathology index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pathology in pathologies %}
+            <tr>
+                <td>{{ pathology.id }}</td>
+                <td>{{ pathology.name }}</td>
+                <td>
+                    <a class="btnb2" href="{{ path('app_pathology_show', {'id': pathology.id}) }}">show</a>
+                    <a  class="btnb3" href="{{ path('app_pathology_edit', {'id': pathology.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btnb"  href="{{ path('app_pathology_new') }}">Create new</a>
+{% endblock %}
